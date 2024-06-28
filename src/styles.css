@@ -1,0 +1,101 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   /* border: 2px solid red; */
+}
+
+*:hover{
+  cursor: default;
+}
+
+body{
+  height: 100vh;
+}
+
+.main{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+#sidebar{
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.header{
+  font-family: "Kanit";
+  font-weight:bold;
+  font-size: 2rem;
+  color: #219ebc;
+  display: flex;
+  padding: 15px;
+  border-bottom: 2px solid #219ebc;
+}
+
+#main-content{
+  flex-grow: 5;
+  flex-basis: 70%;
+}
+
+.list{
+  padding: 20px;
+}
+
+.list ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  gap:10px;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+ul li{
+  padding: 5px;
+  padding-left: 5px;
+  display: flex;
+  gap:8px;
+}
+
+ul li:hover{
+
+  background-color: lightgray;
+}
+
+#main-content{
+  background-color: lightgray;
+}
+
+.project{
+  padding: 10px;
+  padding-left: 20px;
+}
+
+#pro-header{
+   font-size: 1.7rem;
+   font-family: "Roboto";
+   font-weight: 600;
+
+ }
+
+
+#pro-header p {
+   display: block;
+   border-bottom: 3px solid black;
+   margin-bottom: 10px;
+}
+
+li div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:3px;
+  font-family: "Roboto";
+  font-weight: 300;
+}
