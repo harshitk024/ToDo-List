@@ -7,26 +7,17 @@ export class UI{
  
     static loadHomePage(){
 
-        const main = document.querySelector("#heading");
-
-        const projects = JSON.parse(localStorage.getItem("projects")) || []
-       
-        const content = document.querySelector("#content")
-
-        UI.renderTasks(undefined,"all")
-        
-        UI.renderProjects()
-
         const heading = document.querySelector("#heading")
         heading.innerHTML = "<h2>All Tasks</h2>"
 
-        // if(projects.length === 0){
-        //     main.textContent = "No Task"
-        // }
 
-        const addPro = document.querySelector("#addpro");
+        UI.renderTasks(undefined,"all")
+        UI.renderProjects()
+        UI.handleEventListeners()
 
-        addPro.onclick = UI.addProject;
+    }
+
+    static handleEventListeners(){
 
         document.querySelector("#all-tasks").addEventListener("click",()=>{
             UI.renderProjects("default")
@@ -40,17 +31,10 @@ export class UI{
         document.querySelector("#week-tasks").addEventListener("click",()=>{
             UI.renderTasks("default","week");
         })
-      
-        // const complete_task  = document.querySelectorAll(".complete-task")
 
-        // if(complete_task != null){
-        //     complete_task.forEach((ele)=>{
-        //         ele.addEventListener("click",()=>{
-        //             LocalStorage.completeTask(ele.getAttribute("data-project-name").replaceAll("-"," "),ele.getAttribute("data-name").replaceAll("-"," "))
-        //             UI.renderTasks(ele.getAttribute("data-project-name").replaceAll("-"," "),"all")
-        //         })
-        //     })
-        // }
+        const addPro = document.querySelector("#addpro");
+
+        addPro.onclick = UI.addProject;
 
         const taskDelete = document.querySelectorAll(".task-delete")
 
@@ -71,8 +55,10 @@ export class UI{
             UI.projectView(p.id);
            })
         })
+      
     }
 
+ 
     
     
     static addProject(){
@@ -148,7 +134,6 @@ export class UI{
 
         const priorities = document.querySelectorAll(".priority")
         let priority = task.priority
-
 
 
         priorities.forEach((button)=>{
@@ -263,6 +248,11 @@ export class UI{
             deleteDialog.close()
         })
 
+        document.querySelector("#cancelDeleteBtn").addEventListener("click",()=>{
+            deleteDialog.close()
+        })
+
+
     }
 
     static renderTasks(project,type){
@@ -276,8 +266,7 @@ export class UI{
 
         if(type === "all"){
          tasks = LocalStorage.getAllTasks(project);
-        //    heading.innerHTML = "All Tasks"
-        }else if (type === "today"){
+         }else if (type === "today"){
           tasks = LocalStorage.getTodayTask();
           heading.innerHTML = "<h2>Today</h2>"
         }else{
@@ -323,21 +312,31 @@ export class UI{
             })
         })
 
+        UI.makeTaskComplete();
+        UI.handleEventListeners();
+
+        return tasks;
+
+    }
+
+    static makeTaskComplete(){
+
         const complete_task  = document.querySelectorAll(".complete-task")
 
         if(complete_task != null){
             complete_task.forEach((ele)=>{
-                ele.addEventListener("click",()=>{
-                    LocalStorage.completeTask(ele.getAttribute("data-project-name").replaceAll("-"," "),ele.getAttribute("data-name").replaceAll("-"," "))
-                    UI.renderTasks(project,"all")
+                const proName= ele.getAttribute("data-project-name").replaceAll("-"," ");
+                ele.addEventListener("click",()=>{                 
+                    LocalStorage.completeTask(proName,ele.getAttribute("data-name").replaceAll("-"," "))
+
+                    if(document.querySelector("#heading").textContent === "All Tasks"){
+                        UI.renderTasks(undefined,"all")
+                    }else{
+                        UI.renderTasks(document.querySelector("#heading").textContent,"all")
+                    }
                 })
             })
         }
-
-    
-
-        return tasks;
-
     }
 
 

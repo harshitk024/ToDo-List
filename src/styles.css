@@ -392,10 +392,28 @@ form div button{
 
 #task-delete{
   padding: 10px;
+  width: 200px;
+  text-align: center;
   font-family: "Roboto";
   font-weight: 300;
   border-radius: 20px;
 }
+
+#task-delete .dialog-buttons button{
+  margin-top: 10px;  
+  width: 100%;
+}
+
+#task-delete .dialog-buttons button:nth-child(1):hover{
+  background-color: rgb(221, 217, 217);
+  color:black;
+}
+
+#task-delete .dialog-buttons button:nth-child(2){
+  border: none;
+}
+
+
 
 #deleteBtn{
   background-color: red;

@@ -97,7 +97,7 @@ export class LocalStorage {
 
         const pro = LocalStorage.getProject(projectName)
         
-        const taskIndex = pro.tasks.findIndex(t => t.name == task)
+        const taskIndex = pro.tasks.findIndex(t => t.name === task)
 
         console.log(taskIndex);
 
