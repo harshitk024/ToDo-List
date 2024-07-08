@@ -1,20 +1,13 @@
-import { Project } from "./Project.js";
+export class Task {
 
-class Task {
-  
-    constructor(title,description,dueDate,priority){
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.complete = false;
-    }
+   constructor(name,description,dueDate,priority,completed,projectName){
+    this.name = name;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.completed = completed;
+    this.projectName = projectName
 
-    setCompleted(){
-        this.complete = true;
-    }
+   }
 
-    
 }
-
-
