@@ -1,0 +1,1 @@
+(()=>{const t=new class{constructor(t,o){this.name=t,this.description=o}getTask(){return`Task Name : ${this.name}`}}("Go to Gym","At 6pm you'd be at gym for 1 hour");console.log(t.getTask())})();
